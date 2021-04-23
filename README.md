@@ -1,3 +1,3 @@
-# Site-de-la-MOFC
+# CodingHelp
 
 A nicely done discord bot !
