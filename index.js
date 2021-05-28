@@ -1,9 +1,11 @@
 const Discord = require('discord.js'),
-    client = new Discord.Client({
-        fetchAllMembers: true
-    }),
-    config = require('./config.json'),
-    fs = require('fs')
+
+client = new Discord.Client({
+    fetchAllMembers: true
+}),
+
+const config = require('./Autres/config.json'),
+const fs = require('fs')
  
 client.login(config.token)
 client.commands = new Discord.Collection()
@@ -18,8 +20,12 @@ fs.readdir('./commands', (err, files) => {
 })
  
 client.on('message', message => {
-    if (message.type !== 'DEFAULT' || message.author.bot) return
- 
+    if (message.type !== 'DEFAULT' || message.author.bot) {
+        return;
+    } else if (message.startsWith("Bonjour")) {
+        
+    }
+
     const args = message.content.trim().split(/ +/g)
     const commandName = args.shift().toLowerCase()
     if (!commandName.startsWith(config.prefix)) return
