@@ -34,14 +34,12 @@ bot.on('message', message => {
 
     bot.commands.get(command).execute(bot, message, args, embedMaker, prefix, embedError);
 
-    function embedMaker (title = "Titre", description = "Quelque chose semble causer problème :thinking:", footer = `Demandée par ${message.author.username}`, color = "5D6C9D", image = undefined, thumnail = undefined) {
-      const Logo = new Discord.MessageAttachment('./img/PP.jpg')
+    function embedMaker (title = "Titre", description = "Quelque chose semble causer problème :thinking:", footer = `Demandée par ${message.author.username}`, color = "5D6C9D", image = undefined, thumbnail = undefined) {
       return new Discord.MessageEmbed()
-        .attachFiles(Logo)
         .setTitle(title)
         .setColor(color)
         .setImage(image)
-        .setThumbnail(thumnail)
+        .setThumbnail(thumbnail)
         .setDescription(description)
         .setFooter(footer, `${message.author.avatarURL()}`)
         .setTimestamp();
