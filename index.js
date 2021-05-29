@@ -31,7 +31,6 @@ bot.on('message', message => {
     const command = args.shift().toLowerCase();
 
     if (message.type !== 'DEFAULT' || message.author.bot || !bot.commands.has(command)) return;
-    bot.commands.get(command).execute(message, args, embedMaker, prefix);
 
     function embedMaker (title = "Titre", description = "Quelque chose semble causer problème :thinking:", footer = `Demandée par ${message.author.username}`, color = "5D6C9D") {
       return new MessageEmbed()
@@ -41,4 +40,6 @@ bot.on('message', message => {
         .setFooter(footer)
         .setTimestamp();
     };
+
+    bot.commands.get(command).execute(message, args, embedMaker, prefix);
 })
