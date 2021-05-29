@@ -1,25 +1,38 @@
-const Discord = require('discord.js'),
+const fs = require('fs');
+const Discord = require('discord.js');
 
-bot = new Discord.Client
 
-config = require('../BotDiscord -CodingTtime-/config.json'),
-fs = require('fs')
- 
-bot.login(config.token)
+const { prefix, token } = require('./config.json');
 
-bot.on('ready', () => {
-    console.log("Bot successfully logged in !")
+const client = new Discord.Client();
+client.commands = new Discord.Collection();
+
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+
+for (const file of commandFiles) {
+  const command = require(`./commands/${file}`);
+  client.commands.set(command.name, command);
+}
+
+client.once('ready', () => {
+  console.log('Ready!');
 });
 
-bot.on('message', message => {
-    if (message.content === 'ping') {
-      message.reply('pong !')
+client.on('message', message => {
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+    const args = message.content.slice(prefix.length).split(/ +/);
+    const command = args.shift().toLowerCase();
+
+    if (!client.commands.has(command)) return;
+
+    try {
+      client.commands.get(command).execute(message, args);
+    } catch (error) {
+      console.error(error);
+      message.reply("Une erreur s'est produite pendant l'exécution de la commande !");
     }
-  })
+})
 
 
-  bot.on('message', message => {
-      if (message.content === 'help'){
-      message.reply('le bot est en **dévellopement** si tu veux faire une suggestion dm nat ou renardNocturne ^^ ')
-    }
-  })
+client.login(token);
