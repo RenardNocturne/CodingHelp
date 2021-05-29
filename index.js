@@ -1,19 +1,24 @@
 const { token, prefix } = require('./Ignorer/config.js');
-const Discord = require('discord.js')
 
-config = require('./Ignorer/config.json');
-fs = require('fs');
+const Discord = require('discord.js');
+const { readdirSync } = require('fs');
 
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
 
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+const loadCommands = (dir = './commands') => {
+  readdirSync(dir).forEach(dirs => {
+    const commands = readdirSync(`${dir}/${dirs}`).filter(files => files.endsWith(".js"));
 
-for (const file of commandFiles) {
-  const command = require(`./commands/${file}`);
-  bot.commands.set(command.name, command);
-  console.log(`La commande ${command.name} a été chargée !`)
-}
+    for (const file of commands) {
+      const getFileName = require(`${dir}/${dirs}/${file}`);
+      bot.commands.set(getFileName.help.name, getFileName);
+      console.log(`La commande ${getFileName.help.name} a bien été chargée !`);
+    };
+  });
+};
+
+loadCommands();
 
 bot.login(`${token}`)
 
@@ -31,8 +36,8 @@ bot.on('message', message => {
     const command = args.shift().toLowerCase();
 
     if (message.type !== 'DEFAULT' || message.author.bot || !bot.commands.has(command)) return;
-
-    bot.commands.get(command).execute(bot, message, args, embedMaker, prefix, embedError);
+    
+    bot.commands.get(command).run(bot, message, args, embedMaker, prefix, embedError);
 
     function embedMaker (title = "Titre", description = "Quelque chose semble causer problème :thinking:", footer = `Demandée par ${message.author.username}`, color = "5D6C9D", image = undefined, thumbnail = undefined) {
       return new Discord.MessageEmbed()

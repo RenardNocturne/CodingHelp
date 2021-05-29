@@ -1,9 +1,6 @@
-module.exports = {
-    name: 'suggestions',
-    description: 'Envoies ta suggestion !',
+module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
 
-    execute(bot, message, args, embedMaker, prefix, embedError) {
-        const channel = message.guild.channels.cache.find(c => c.id === '848156324248420402');
+    const channel = message.guild.channels.cache.find(c => c.id === '848156324248420402');
         if(!channel) return message.channel.send(embedError('Le salon de suggestions n\'a pas été trouvé !'));
         if(args[0] === undefined) return message.channel.send(embedError('Aucune suggestion apportée !'))
 
@@ -17,5 +14,9 @@ module.exports = {
         }).catch((err)=>{
             throw err;
         })
-    }
+}
+
+module.exports.help = {
+    name: "suggestions",
+    description: "Envoyez vous meilleures suggestions !"
 }
