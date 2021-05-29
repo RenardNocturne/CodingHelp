@@ -2,7 +2,7 @@ module.exports = {
     name: 'bonjour',
     description: 'Commande de test.',
 
-    execute(message, args) {
+    execute(bot, message, args, embedMaker, prefix, embedError) {
         message.channel.send("Hey BG !");
     }
 }

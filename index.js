@@ -1,18 +1,18 @@
-const Discord = require('discord.js');
 const { token, prefix } = require('./Ignorer/config.js');
-const { MessageEmbed, Collection, Client } = require('discord.js');
+const Discord = require('discord.js')
 
 config = require('./Ignorer/config.json');
 fs = require('fs');
 
-const bot = new Client();
-bot.commands = new Collection();
+const bot = new Discord.Client();
+bot.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
   bot.commands.set(command.name, command);
+  console.log(`La commande ${command.name} a été chargée !`)
 }
 
 bot.login(`${token}`)
@@ -32,14 +32,27 @@ bot.on('message', message => {
 
     if (message.type !== 'DEFAULT' || message.author.bot || !bot.commands.has(command)) return;
 
-    function embedMaker (title = "Titre", description = "Quelque chose semble causer problème :thinking:", footer = `Demandée par ${message.author.username}`, color = "5D6C9D") {
-      return new MessageEmbed()
+    bot.commands.get(command).execute(bot, message, args, embedMaker, prefix, embedError);
+
+    function embedMaker (title = "Titre", description = "Quelque chose semble causer problème :thinking:", footer = `Demandée par ${message.author.username}`, color = "5D6C9D", image = undefined, thumnail = undefined) {
+      const Logo = new Discord.MessageAttachment('./img/PP.jpg')
+      return new Discord.MessageEmbed()
+        .attachFiles(Logo)
         .setTitle(title)
         .setColor(color)
+        .setImage(image)
+        .setThumbnail(thumnail)
         .setDescription(description)
-        .setFooter(footer)
+        .setFooter(footer, `${message.author.avatarURL()}`)
         .setTimestamp();
     };
-
-    bot.commands.get(command).execute(message, args, embedMaker, prefix);
-})
+    
+    function embedError (description = "Quelque chose semble causer problème :thinking:") {
+      return new Discord.MessageEmbed()
+        .setTitle("Une erreur est survenue !")
+        .setColor("DE2916")
+        .setDescription(description)
+        .setFooter(`Demandée par ${message.author.username}`, `${message.author.avatarURL()}`)
+        .setTimestamp();
+    };
+});
