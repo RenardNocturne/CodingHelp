@@ -15,5 +15,6 @@ module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
 
 module.exports.help = {
     name: "description",
-    description: "Faites connaissance avec CodingHelp !"
+    description: "Faites connaissance avec CodingHelp !",
+    args: false,
 }

@@ -33,11 +33,17 @@ bot.on('ready', () => {
 bot.on('message', message => {
     const args = message.content.slice(prefix.length).split(/ +/);
 
-    const command = args.shift().toLowerCase();
+    const commandName = args.shift().toLowerCase();
 
-    if (message.type !== 'DEFAULT' || message.author.bot || !bot.commands.has(command)) return;
+    if (message.type !== 'DEFAULT' || message.author.bot || !bot.commands.has(commandName)) return;
     
-    bot.commands.get(command).run(bot, message, args, embedMaker, prefix, embedError);
+    const command = bot.commands.get(commandName);
+
+    if (command.help.args && !args.length) {
+      return message.channel.send(embedError(`Un ou plusieurs arguments étaient attendus ! \n \n **Utilisation attendue:** \n \`${prefix}${command.help.name} ${command.help.usage}\` \n \n *[Obligatoire], <Optionnel>*`))
+    }
+
+    command.run(bot, message, args, embedMaker, prefix, embedError);
 
     function embedMaker (title = "Titre", description = "Quelque chose semble causer problème :thinking:", footer = `Demandée par ${message.author.username}`, color = "5D6C9D", image = undefined, thumbnail = undefined) {
       return new Discord.MessageEmbed()
