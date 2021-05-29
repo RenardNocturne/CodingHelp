@@ -10,12 +10,8 @@ module.exports = {
         if(!channel) return message.channel.send('le channel **suggestions** n égiste pas');
 
         let messageArgs = args.join(' ');
-        //const embed = new discord.MessageEmbed()
-        //.setColor('FADF2E')
-        //.setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
-        //.setDescription(messageArgs);
-
-        channel.send().then((msg) =>{
+ 
+        channel.send(messageArgs).then((msg) =>{
             msg.react('👍');
             msg.react('👎');
             message.delete();

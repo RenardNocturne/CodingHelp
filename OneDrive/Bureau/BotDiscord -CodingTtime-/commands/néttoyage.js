@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'nétoyage',
+  name: 'nettoyage',
   description: 'Delete messages.',
   execute(message, args) {
     const amount = parseInt(args[0]) + 1;
