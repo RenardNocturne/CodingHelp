@@ -1,7 +1,6 @@
-module.exports = {
-  name: 'avatar',
-  description: 'Display avatar URL.',
-  execute(message) {
+module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
+
+
     if (!message.mentions.users.size) {
       return message.channel.send(`Votre avatar est : ${message.author.displayAvatarURL({ format: 'png' })}`);
     }
@@ -11,5 +10,10 @@ module.exports = {
     });
 
     message.channel.send(avatarList);
-  }
-};
+  
+}; 
+
+module.exports.help = {
+name: 'avatar',
+description: 'Display avatar URL.',
+}

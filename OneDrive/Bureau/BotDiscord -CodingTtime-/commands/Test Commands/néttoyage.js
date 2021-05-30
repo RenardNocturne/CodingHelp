@@ -1,7 +1,5 @@
-module.exports = {
-  name: 'nettoyage',
-  description: 'Delete messages.',
-  execute(message, args) {
+module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
+
     const amount = parseInt(args[0]) + 1;
 
     if (isNaN(amount)) {
@@ -13,5 +11,10 @@ module.exports = {
 
     message.channel.bulkDelete(amount)
       .then(messages => console.log(`${messages.size - 1} messages supprimés.`))
-  }
-};
+  }; 
+
+  module.exports.help = {
+ name: 'nettoyage',
+  description: 'Delete messages.',  
+
+  } 
