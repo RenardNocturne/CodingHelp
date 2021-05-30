@@ -21,4 +21,5 @@ module.exports.help = {
     description: "Envoyez vous meilleures suggestions !",
     args: true,
     usage: "[Votre suggestion]",
+    cooldown: 20,
 }

@@ -7,4 +7,5 @@ module.exports.help = {
     name: "help",
     description: "Vous renvoies la liste des commandes disponibles !",
     args: false,
+    cooldown: 25,
 }

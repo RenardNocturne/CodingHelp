@@ -17,4 +17,5 @@ module.exports.help = {
     name: "description",
     description: "Faites connaissance avec CodingHelp !",
     args: false,
+    cooldown: 25,
 }

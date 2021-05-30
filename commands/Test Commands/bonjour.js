@@ -7,4 +7,5 @@ module.exports.help = {
     name: "bonjour",
     description: "N'oublions pas les bonnes manières !",
     args: false,
+    cooldown: 25,
 }
