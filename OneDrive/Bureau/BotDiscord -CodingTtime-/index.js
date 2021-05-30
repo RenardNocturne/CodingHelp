@@ -1,38 +1,67 @@
-const fs = require('fs');
+const { token, prefix } = require('./config.json');
 const Discord = require('discord.js');
+const { readdirSync } = require('fs');
 
+const bot = new Discord.Client();
+bot.commands = new Discord.Collection();
 
-const { prefix, token } = require('./config.json');
+const loadCommands = (dir = './commands') => {
+  readdirSync(dir).forEach(dirs => {
+    const commands = readdirSync(`${dir}/${dirs}`).filter(files => files.endsWith(".js"));
 
-const client = new Discord.Client();
-client.commands = new Discord.Collection();
-
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-
-for (const file of commandFiles) {
-  const command = require(`./commands/${file}`);
-  client.commands.set(command.name, command);
+    for (const file of commands) {
+      const getFileName = require(`${dir}/${dirs}/${file}`);
+      console.log(getFileName)
+      bot.commands.set(getFileName.help.name, getFileName);
+      console.log(`La commande ${getFileName.help.name} a bien été chargée !`);
+    };
+  });
 }
 
-client.once('ready', () => {
-  console.log('Ready!');
+
+
+
+
+loadCommands();
+
+bot.login(`${token}`)
+
+bot.on('ready', () => {
+    console.log("Bot successfully logged in !")
+
+    bot.user.setPresence({ activity: { name: `l'alpha de CodingHelp.`, type: 'WATCHING' }, status: 'online'})
+      .then()
+      .catch(console.error);
 });
 
-client.on('message', message => {
-  if (!message.content.startsWith(prefix) || message.author.bot) return;
-
+bot.on('message', message => {
     const args = message.content.slice(prefix.length).split(/ +/);
+
     const command = args.shift().toLowerCase();
 
-    if (!client.commands.has(command)) return;
+    if (message.type !== 'DEFAULT' || message.author.bot || !bot.commands.has(command)) return;
+    
+    bot.commands.get(command).run(bot, message, args, embedMaker, prefix, embedError);
 
-    try {
-      client.commands.get(command).execute(message, args);
-    } catch (error) {
-      console.error(error);
-      message.reply("Une erreur s'est produite pendant l'exécution de la commande !");
-    }
-})
+    function embedMaker (title = "Titre", description = "Quelque chose semble causer problème :thinking:", footer = `Demandée par ${message.author.username}`, color = "5D6C9D", image = undefined, thumbnail = undefined) {
+      return new Discord.MessageEmbed()
+        .setTitle(title)
+        .setColor(color)
+        .setImage(image)
+        .setThumbnail(thumbnail)
+        .setDescription(description)
+        .setFooter(footer, `${message.author.avatarURL()}`)
+        .setTimestamp();
+    };
+    
+    function embedError (description = "Quelque chose semble causer problème :thinking:") {
+      return new Discord.MessageEmbed()
+        .setTitle("Une erreur est survenue !")
+        .setColor("DE2916")
+        .setDescription(description)
+        .setFooter(`Demandée par ${message.author.username}`, `${message.author.avatarURL()}`)
+        .setTimestamp();
+    };
+});
 
 
-client.login(token);
