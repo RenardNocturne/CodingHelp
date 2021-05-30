@@ -17,5 +17,7 @@ module.exports.help = {
     name: "description",
     description: "Faites connaissance avec CodingHelp !",
     args: false,
+    usage: '',
     cooldown: 25,
+    aliases: ['desc'],
 }

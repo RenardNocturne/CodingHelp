@@ -22,4 +22,5 @@ module.exports.help = {
     args: true,
     usage: "[Votre suggestion]",
     cooldown: 20,
+    aliases: ['suggests', 'suggest', 'suggestion'],
 }

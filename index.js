@@ -32,14 +32,15 @@ bot.on('ready', () => {
 
 bot.on('message', message => {
 
-  //constantes
+    //constantes
     const args = message.content.slice(prefix.length).split(/ +/);
 
     const commandName = args.shift().toLowerCase();
-    const command = bot.commands.get(commandName);
+    const command = bot.commands.get(commandName) || bot.commands.find(cmd => cmd.help.aliases && cmd.help.aliases.includes(commandName));
+    console.log(bot.commands)
 
     //sécurité
-    if (message.type !== 'DEFAULT' || message.author.bot || !bot.commands.has(commandName)) return;
+    if (message.type !== 'DEFAULT' || message.author.bot || !command) return;
     
     //args
     if (command.help.args && !args.length) {
