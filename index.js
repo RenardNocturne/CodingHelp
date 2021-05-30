@@ -44,7 +44,7 @@ bot.on('message', message => {
     
     //args
     if (command.help.args && !args.length) {
-      return message.channel.send(embedError(`Un ou plusieurs arguments étaient attendus ! \n \n **Utilisation attendue:** \n \`${prefix}${command.help.name} ${command.help.usage}\` \n \n *[Obligatoire], <Optionnel>*`))
+      return message.channel.send(embedError(undefined, `Un ou plusieurs arguments étaient attendus ! \n \n **Utilisation attendue:** \n \`${prefix}${command.help.name} ${command.help.usage}\` \n \n *[Obligatoire], <Optionnel>*`))
     }
 
     //cooldowns
