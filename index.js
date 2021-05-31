@@ -1,4 +1,4 @@
-const { prefix } = require('./Ignorer/config.js');
+const { prefix } = require('config.js');
 
 const Discord = require('discord.js');
 const { readdirSync } = require('fs');
