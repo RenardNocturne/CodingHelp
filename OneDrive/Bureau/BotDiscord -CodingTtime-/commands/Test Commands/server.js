@@ -8,4 +8,9 @@ module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
 module.exports.help = {
   name: 'server',
   description: 'Server informations.',
+  args: false,
+  cooldown: 25,
+  aliases: ['serveur', 'servere'],
+  userPerms: ["ADMINISTRATOR"],
+  botPerms: ["SEND_MESSAGES", "ADMINISTRATOR"]
 }

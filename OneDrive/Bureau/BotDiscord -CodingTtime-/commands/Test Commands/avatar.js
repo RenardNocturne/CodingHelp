@@ -6,7 +6,7 @@ module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
     }
 
     const avatarList = message.mentions.users.map(user => {
-      return `L'avatar de ${user.username} est : ${user.displayAvatarURL({ format: 'png' })}`;
+      return embedMaker("Avatar", `L'avatar de ${user.username} est:` , undefined, undefined, `${user.displayAvatarURL({ format: 'png' })}`);
     });
 
     message.channel.send(avatarList);
@@ -14,6 +14,11 @@ module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
 }; 
 
 module.exports.help = {
-name: 'avatar',
-description: 'Display avatar URL.',
+  name: 'avatar',
+  description: 'Display avatar URL.',
+  args: false,
+  cooldown: 20,
+  aliases: ['avatare', 'avtar', ],
+  userPerms: ["ADMINISTRATOR"],
+  botPerms: ["SEND_MESSAGES", "ADMINISTRATOR"]
 }

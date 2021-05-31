@@ -14,7 +14,13 @@ module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
   }; 
 
   module.exports.help = {
- name: 'nettoyage',
-  description: 'Delete messages.',  
+    name: 'nettoyage',
+    description: 'Delete messages.',  
+    args: true,
+    usage: "[nombre entre 1 et 10]",
+    cooldown: undefined,
+    aliases: ['nettoiage', 'néttoyage', 'netoyage', 'nétoyage' ],
+    userPerms: ["ADMINISTRATOR"],
+    botPerms: ["SEND_MESSAGES", "ADMINISTRATOR"]
 
   } 

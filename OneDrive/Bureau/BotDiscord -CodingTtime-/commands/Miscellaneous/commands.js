@@ -23,4 +23,10 @@ message.channel.send(embed);
 module.exports.help = {
     name: 'commands',
     description: 'affiche les commandes du bot',
+    args: false,
+    cooldown: 20,
+    aliases: ['commande', 'commandes'],
+    userPerms: ["ADMINISTRATOR"],
+    botPerms: ["SEND_MESSAGES", "ADMINISTRATOR"]
+    
   }
