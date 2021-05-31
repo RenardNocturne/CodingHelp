@@ -1,4 +1,4 @@
-const { prefix } = require('./config');
+const { prefix, TOKEN } = require('./.env/config.js');
 
 const Discord = require('discord.js');
 const { readdirSync } = require('fs');
@@ -20,7 +20,7 @@ const loadCommands = (dir = './commands') => {
 
 loadCommands();
 
-bot.login(process.env.TOKEN)
+bot.login(TOKEN)
 
 bot.on('ready', () => {
     console.log("Bot successfully logged in !")
@@ -86,7 +86,7 @@ bot.on('message', message => {
     );
     
 
-    if(!message.member.permissions.has(command.help.userPerms)) return message.channel.send(embedError("Une ou plusieurs permissions manquantes !", `Certaines permissions semblent manquées. \n\n *__Permissions requises pour effectuer la commande:__* \n  > ${userPerms}`.replace(',', '')));
+    if(!message.member.permissions.has(command.help.userPerms)) return message.channel.send(embedError("Une ou plusieurs permissions manquantes !", `Certaines permissions semblent manquées. \n\n *__Permissions requises pour effectuer la commande:__* \n  ${userPerms}`.replace(',', '')));
     if(!message.guild.me.permissions.has(command.help.botPerms)) return message.channel.send(embedError("Une ou plusieurs permissions manquantes !", `Certaines permissions semblent me manquer. \n\n *__J'ai besoin des permissions:__* \n  ${botPerms}`.replace(',', '')));
 
     Timestamp.set(message.author.id, time);
