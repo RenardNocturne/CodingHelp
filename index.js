@@ -1,4 +1,4 @@
-const { token, prefix } = require('./Ignorer/config.js');
+const { prefix } = require('./Ignorer/config.js');
 
 const Discord = require('discord.js');
 const { readdirSync } = require('fs');
@@ -20,7 +20,7 @@ const loadCommands = (dir = './commands') => {
 
 loadCommands();
 
-bot.login(`${token}`)
+bot.login(process.env.TOKEN)
 
 bot.on('ready', () => {
     console.log("Bot successfully logged in !")
