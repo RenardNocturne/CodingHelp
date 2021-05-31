@@ -23,4 +23,6 @@ module.exports.help = {
     usage: "[Votre suggestion]",
     cooldown: 20,
     aliases: ['suggests', 'suggest', 'suggestion'],
+    userPerms: [],
+    botPerms: [],
 }

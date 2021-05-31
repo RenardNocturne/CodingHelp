@@ -4,7 +4,7 @@ const Discord = require('discord.js');
 const { readdirSync } = require('fs');
 
 const bot = new Discord.Client();
-["commands", "cooldowns"].forEach(element => bot[element] = new Discord.Collection());
+["commands", "cooldowns", "perms"].forEach(element => bot[element] = new Discord.Collection());
 
 const loadCommands = (dir = './commands') => {
   readdirSync(dir).forEach(dirs => {
@@ -25,7 +25,7 @@ bot.login(`${token}`)
 bot.on('ready', () => {
     console.log("Bot successfully logged in !")
 
-    bot.user.setPresence({ activity: { name: `l'alpha de CodingHelp.`, type: 'WATCHING' }, status: 'online'})
+    bot.user.setPresence({ activity: { name: `son propre développement.`, type: 'WATCHING' }, status: 'online'})
       .then()
       .catch(console.error);
 });
@@ -37,8 +37,6 @@ bot.on('message', message => {
 
     const commandName = args.shift().toLowerCase();
     const command = bot.commands.get(commandName) || bot.commands.find(cmd => cmd.help.aliases && cmd.help.aliases.includes(commandName));
-    console.log(bot.commands)
-
     //sécurité
     if (message.type !== 'DEFAULT' || message.author.bot || !command) return;
     
@@ -65,6 +63,31 @@ bot.on('message', message => {
         return message.channel.send(embedError(`Pas si vite !`, `${message.author.username} laissez-moi **${tLeft.toFixed(0)} secondes** le temps de retrouver mes esprits ! Après quoi, la commande ${command.help.name} sera de nouveau disponible.`))
       }
     }
+
+    //perms
+    function Maj(str){
+      return (str + ' ').charAt(0).toUpperCase() + str.substr(1);
+    };
+
+    const botPerms = [];
+
+    command.help.botPerms.forEach(perm => 
+      botPerms.push(
+        '> ' + Maj(perm.toLowerCase().replace('_', ' ')) + '\n'
+      )
+    );
+    
+    const userPerms = [];
+
+    command.help.userPerms.forEach(perm => 
+      userPerms.push(
+        '> ' + Maj(perm.toLowerCase().replace('_', ' ')) + '\n'
+      )
+    );
+    
+
+    if(!message.member.permissions.has(command.help.userPerms)) return message.channel.send(embedError("Une ou plusieurs permissions manquantes !", `Certaines permissions semblent manquées. \n\n *__Permissions requises pour effectuer la commande:__* \n  > ${userPerms}`.replace(',', '')));
+    if(!message.guild.me.permissions.has(command.help.botPerms)) return message.channel.send(embedError("Une ou plusieurs permissions manquantes !", `Certaines permissions semblent me manquer. \n\n *__J'ai besoin des permissions:__* \n  ${botPerms}`.replace(',', '')));
 
     Timestamp.set(message.author.id, time);
     setTimeout(() => Timestamp.delete(message.author.id), delay)

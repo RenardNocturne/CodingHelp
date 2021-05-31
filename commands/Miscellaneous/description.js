@@ -20,4 +20,6 @@ module.exports.help = {
     usage: '',
     cooldown: 25,
     aliases: ['desc'],
+    userPerms: [],
+    botPerms: [],
 }

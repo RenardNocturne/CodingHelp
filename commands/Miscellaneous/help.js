@@ -10,4 +10,6 @@ module.exports.help = {
     usage: '',
     cooldown: 25,
     aliases: ["halp"],
+    userPerms: ["ADMINISTRATOR"],
+    botPerms: ["SEND_MESSAGES", "ADMINISTRATOR"]
 }
