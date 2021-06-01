@@ -1,5 +1,4 @@
 const { MessageEmbed, MessageAttachment } = require('discord.js');
-const Logo = new MessageAttachment('../../img/PP.jpg');
 
 module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
 

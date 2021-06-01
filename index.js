@@ -106,7 +106,7 @@ bot.on('message', message => {
         .setTimestamp();
     };
     
-    function embedError (title = "Une erreur est survenue", description = "Quelque chose semble causer problème :thinking:") {
+    function embedError (title = "Une erreur est survenue !", description = "Quelque chose semble causer problème :thinking:") {
       return new Discord.MessageEmbed()
         .setTitle(title)
         .setColor("DE2916")
