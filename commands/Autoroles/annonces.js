@@ -1,6 +1,6 @@
 module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
 
-    let annonceRole = '848543843133685790';
+    let annonceRole = '849313732785733732';
 
     if (message.member.roles.cache.has(annonceRole)) {
         message.channel.send(embedError(undefined, `${message.author.username} le rôle ${message.member.roles.cache.get(annonceRole)} vous a déjà été attribué !`))
