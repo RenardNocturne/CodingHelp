@@ -39,7 +39,7 @@ bot.on('message', message => {
     const command = bot.commands.get(commandName) || bot.commands.find(cmd => cmd.help.aliases && cmd.help.aliases.includes(commandName));
     //sécurité
     if (message.type !== 'DEFAULT' || message.author.bot || !command) return;
-    
+    if(message.channel.type === 'dm') return message.channel.send(embedError(undefined, `Si vous souhaitez effectuer une de mes commandes, utilisez-la dans un salon de serveur Discord ! **Je suis indisponible via messages privés.**`));
     //args
     if (command.help.args && !args.length) {
       return message.channel.send(embedError(undefined, `Un ou plusieurs arguments étaient attendus ! \n \n **Utilisation attendue:** \n \`${prefix}${command.help.name} ${command.help.usage}\` \n \n *[Obligatoire], <Optionnel>*`))
