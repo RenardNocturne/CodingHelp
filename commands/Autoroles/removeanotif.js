@@ -7,7 +7,7 @@ module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
     } else {
     message.member.roles.remove(annonceRole)
     message.channel.send(embedMaker("Rôle retiré !", `${message.author.username}, vous venez de perdre le rôle ${message.member.guild.roles.cache.get(annonceRole)}`))
-    } console.log(message.guild.roles.cache)
+    }
 }
 
 module.exports.help = {

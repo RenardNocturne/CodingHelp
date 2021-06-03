@@ -7,7 +7,6 @@ module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
     } else {
     message.channel.send(embedMaker("Rôle accordé !", `${message.author.username}, vous venez de recevoir le rôle ${message.member.guild.roles.cache.get(annonceRole)}`))
     message.member.roles.add(annonceRole)
-    console.log(message.member.guild.roles.cache)
     }
 }
 
