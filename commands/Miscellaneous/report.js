@@ -16,4 +16,5 @@ cooldown: 25,
 aliases: ['reporte'],
 userPerms: [],
 botPerms: [],
+deletecmd: true,
 }

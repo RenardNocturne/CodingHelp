@@ -16,7 +16,7 @@ module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
     if (mentionned.kickable) { // Si on peut kick on kick
 
         message.guild.channels.cache.get('829037449903734804').send(embedMaker("Membre expulsé !", `**${mentionned} a été expulsé par <!@${message.author.id}> !** ${reasonText}`));
-        message.channel.send(embedMaker("Membre expulsé !", `**${mentionned} a été expulsé !** \n \n *__Modérateur:__* \n > <!@${message.author.id}> ${reasonText}`))
+        message.channel.send(embedMaker("Membre expulsé !", `**${mentionned} a été expulsé !** \n \n *__Modérateur:__* \n > <@!${message.author.id}> ${reasonText}`))
         mentionned.kick({reason: reason});
 
     } else {
@@ -33,4 +33,5 @@ module.exports.help = {
     aliases: [],
     userPerms: ["KICK_MEMBERS"], //Besoin des perms de kick pour effectuer la cmd
     botPerms: ["KICK_MEMBERS"],
+    deletecmd: true,
 }

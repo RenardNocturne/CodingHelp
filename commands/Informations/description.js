@@ -21,4 +21,5 @@ module.exports.help = {
     aliases: ['desc'],
     userPerms: [],
     botPerms: [],
+    deletecmd: true,
 }

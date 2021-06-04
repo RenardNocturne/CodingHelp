@@ -56,5 +56,6 @@ module.exports.help = {
     cooldown: 25,
     aliases: ["rule"],
     userPerms: [],
-    botPerms: []
+    botPerms: [],
+    deletecmd: false,
 }

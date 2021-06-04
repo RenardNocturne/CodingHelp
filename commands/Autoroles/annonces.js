@@ -3,9 +3,9 @@ module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
     let annonceRole = '849313732785733732';
 
     if (message.member.roles.cache.has(annonceRole)) {
-        message.channel.send(embedError(undefined, `${message.author.username} le rôle ${message.member.roles.cache.get(annonceRole)} vous a déjà été attribué !`))
+        message.channel.send(embedError(undefined, `${message.author.username} le rôle ${message.member.roles.cache.get(annonceRole)} vous a déjà été attribué !`)).then(msg => msg.delete({timeout: 5000}))
     } else {
-    message.channel.send(embedMaker("Rôle accordé !", `${message.author.username}, vous venez de recevoir le rôle ${message.member.guild.roles.cache.get(annonceRole)}`))
+    message.channel.send(embedMaker("Rôle accordé !", `${message.author.username}, vous venez de recevoir le rôle ${message.member.guild.roles.cache.get(annonceRole)}`)).then(msg => msg.delete({timeout: 5000}))
     message.member.roles.add(annonceRole)
     }
 }
@@ -18,5 +18,6 @@ usage: "",
 cooldown: 15,
 aliases: ['annoncenotif', 'anotifs', 'annoncenotifs', 'annoncesnotifs'],
 userPerms: [],
-botPerms: ['MANAGE_ROLES']
+botPerms: ['MANAGE_ROLES'],
+deletecmd: true,
 }

@@ -61,7 +61,10 @@ module.exports = (bot, message) => {
   if(!message.guild.me.permissions.has(command.help.botPerms)) return message.channel.send(embedError("Une ou plusieurs permissions manquantes !", `Certaines permissions semblent me manquer. \n\n *__J'ai besoin des permissions:__* \n  ${botPerms}`.replace(',', '')));
 
   Timestamp.set(message.author.id, time);
-  setTimeout(() => Timestamp.delete(message.author.id), delay)
+  setTimeout(() => Timestamp.delete(message.author.id), delay);
+
+  //delete
+  if(command.help.deletecmd === true && message.deletable) message.delete({ timeout: 1500 }).catch(console.error()) // Si dans le command help on a mis true à delete et que le message est deletable on le delete. Si ça marche po on catch les errors
 
   command.run(bot, message, args, embedMaker, prefix, embedError);
 

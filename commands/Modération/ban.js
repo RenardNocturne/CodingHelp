@@ -16,7 +16,7 @@ module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
     if (mentionned.bannable) { // Si on peut ban on ban
 
         message.guild.channels.cache.get('829037449903734804').send(embedMaker("Membre banni !", `**${mentionned} a été banni par <!@${message.author.id}> !** ${reasonText}`));
-        message.channel.send(embedMaker("Membre banni !", `**${mentionned} a été banni !** \n \n *__Modérateur:__* \n > <!@${message.author.id}> ${reasonText}`))
+        message.channel.send(embedMaker("Membre banni !", `**${mentionned} a été banni !** \n \n *__Modérateur:__* \n > <@!${message.author.id}> ${reasonText}`))
         mentionned.ban({reason: reason});
 
     } else {
@@ -33,4 +33,5 @@ module.exports.help = {
     aliases: [],
     userPerms: ["BAN_MEMBERS"], //Besoin des perms de ban pour effectuer la cmd
     botPerms: ["BAN_MEMBERS"],
+    deletecmd: true,
 }

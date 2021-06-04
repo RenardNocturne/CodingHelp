@@ -25,4 +25,5 @@ module.exports.help = {
     aliases: ['suggests', 'suggest', 'suggestion'],
     userPerms: [],
     botPerms: [],
+    deletecmd: true,
 }
