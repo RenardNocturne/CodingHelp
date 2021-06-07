@@ -1,6 +1,5 @@
 module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
 
-    console.log(args)
     switch (args[0]) {
         case '1' : 
             message.channel.send(embedMaker(`Article ${args[0]}`, "> :x: **1.** **Ne pas spammer** (Envoyer des messages en répétition) dans les salons textuels."));
@@ -57,5 +56,5 @@ module.exports.help = {
     aliases: ["rule"],
     userPerms: [],
     botPerms: [],
-    deletecmd: false,
+    deletecmd: true,
 }

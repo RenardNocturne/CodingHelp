@@ -1,4 +1,4 @@
-const { prefix } = require('../../.env/config.js');
+const { prefix, TOKEN } = require('../../Ignore/config.js');
 const Discord = require('discord.js');
 
 module.exports = (bot, message) => {

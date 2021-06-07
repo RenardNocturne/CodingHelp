@@ -1,4 +1,4 @@
-const { prefix, TOKEN } = require('./.env/config.js');
+const { prefix, TOKEN } = require('./Ignore/config');
 const Discord = require('discord.js');
 const { readdirSync } = require('fs');
 
