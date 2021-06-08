@@ -8,13 +8,14 @@ module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
     .catch(() => message.channel.send(embedError(undefined, `${message.author.username}, il semblerait que vous soyez fermés au messages privés ! **Votre message à tout de même été envoyé !**`)));
 }
 module.exports.help = {
-name: "report",
-description: "report un bug ou un joueur !",
-args: true,
-usage: "[message]",
-cooldown: 25,
-aliases: ['reporte'],
-userPerms: [],
-botPerms: [],
-deletecmd: true,
+    name: "report",
+    category: 'miscellaneous',
+    description: "report un bug ou un joueur !",
+    args: true,
+    usage: "[message]",
+    cooldown: 25,
+    aliases: ['reporte'],
+    userPerms: [],
+    botPerms: [],
+    deletecmd: true,
 }

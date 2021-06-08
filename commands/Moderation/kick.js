@@ -26,6 +26,7 @@ module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
 
 module.exports.help = {
     name: "kick",
+    category: 'moderation',
     description: "Vous permet d'expulser un forcené.",
     args: 1,
     usage: "[@malfrat] <raison>",

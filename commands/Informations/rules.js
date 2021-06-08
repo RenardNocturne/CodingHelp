@@ -49,6 +49,7 @@ module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
 
 module.exports.help = {
     name: "rules",
+    category: 'informations',
     description: "Vous renvoies la liste des règles du serveur !",
     args: false,
     usage: '<numéro de la règle>',

@@ -1,4 +1,4 @@
-const { MessageEmbed, MessageAttachment } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
 
@@ -14,6 +14,7 @@ module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
 
 module.exports.help = {
     name: "description",
+    category: 'informations',
     description: "Faites connaissance avec CodingHelp !",
     args: false,
     usage: '',

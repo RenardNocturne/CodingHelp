@@ -20,6 +20,7 @@ module.exports.run = async (bot, message, args, embedMaker, prefix, embedError, 
 
 module.exports.help = {
     name: "invites",
+    category: 'informations',
     description: "Vous renvoies les statistiques de vos invitations !",
     args: false,
     usage: '',

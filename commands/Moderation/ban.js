@@ -26,6 +26,7 @@ module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
 
 module.exports.help = {
     name: "ban",
+    category: 'moderation',
     description: "Vous permet de bannir un forcené.",
     args: 1,
     usage: "[@malfrat] <raison>",

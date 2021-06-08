@@ -13,6 +13,7 @@ module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
 
 module.exports.help = {
 name: 'botnotif',
+category: 'autoroles',
 description: 'Vous ajoute/retire le rôle de notifications d\'annonces bot.',
 args: false,
 usage: "",

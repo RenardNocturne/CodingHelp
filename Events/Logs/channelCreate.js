@@ -1,7 +1,8 @@
 const { MessageEmbed } = require("discord.js");
 
 module.exports = async (bot, channel) => {
-    
+
+    if (channel.type === 'dm') return;
     const logsChannel = bot.channels.cache.get('829037449903734804'); // On cible le channel de logs
     const AuditLogs = await channel.guild.fetchAuditLogs( { limit: 1, type: 'CHANNEL_CREATE' } ); //On fetch les logs et on écoute ceux de type CHANNEL_CREATE, le bot est trigger à 1
     const latestChannelCreated = AuditLogs.entries.first(); // On prend la première entrée

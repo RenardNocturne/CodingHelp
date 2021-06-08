@@ -1,7 +1,11 @@
 const { prefix, TOKEN } = require('../../Ignore/config.js');
+const { convertTtD } = require('../../Utils/loader')
 const Discord = require('discord.js');
 
 module.exports = (bot, message) => {
+  
+  if(message.channel.type === 'dm') return bot.emit('directMessage', message)
+
   //constantes
   const args = message.content.slice(prefix.length).split(/ +/);
 
@@ -10,7 +14,7 @@ module.exports = (bot, message) => {
   const command = bot.commands.get(commandName) || bot.commands.find(cmd => cmd.help.aliases && cmd.help.aliases.includes(commandName));
   //sécurité
   if (message.type !== 'DEFAULT' || message.author.bot || !command) return;
-  if(message.channel.type === 'dm') return message.channel.send(embedError(undefined, `Si vous souhaitez effectuer une de mes commandes, utilisez-la dans un salon de serveur Discord ! **Je suis indisponible via messages privés.**`));
+  
   //args
   if (args.length < command.help.args) {
     return message.channel.send(embedError(undefined, `Un ou plusieurs arguments étaient attendus ! \n \n **Utilisation attendue:** \n \`${prefix}${command.help.name} ${command.help.usage}\` \n \n *[Obligatoire], <Optionnel>*`))
@@ -66,9 +70,6 @@ module.exports = (bot, message) => {
   //delete
   if(command.help.deletecmd === true && message.deletable) message.delete({ timeout: 1500 }).catch(console.error()) // Si dans le command help on a mis true à delete et que le message est deletable on le delete. Si ça marche po on catch les errors
 
-  command.run(bot, message, args, embedMaker, prefix, embedError, convertTtD);
-
-  //fonctions
   function embedMaker (title = "Titre", description = "Quelque chose semble causer problème :thinking:", footer = `Demandée par ${message.author.username}`, color = "5D6C9D", image = undefined, thumbnail = undefined) {
     return new Discord.MessageEmbed()
       .setTitle(title)
@@ -80,8 +81,8 @@ module.exports = (bot, message) => {
       .setTimestamp();
   };
   
-  function embedError (title = "Une erreur est survenue !", description = "Quelque chose semble causer problème :thinking:") {
-    return new Discord.MessageEmbed()
+function embedError (title = "Une erreur est survenue !", description = "Quelque chose semble causer problème :thinking:") {
+  return new Discord.MessageEmbed()
       .setTitle(title)
       .setColor("DE2916")
       .setDescription(description)
@@ -89,9 +90,5 @@ module.exports = (bot, message) => {
       .setTimestamp();
   };
 
-  function convertTtD(timestamp) {
-    const d = new Date( timestamp );
-    date = d.getHours() + ":" + d.getMinutes() + ", " + d.toDateString();
-    return date;
-  };
+  command.run(bot, message, args, embedMaker, prefix, embedError, convertTtD);
 }
