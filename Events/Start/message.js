@@ -66,7 +66,7 @@ module.exports = (bot, message) => {
   //delete
   if(command.help.deletecmd === true && message.deletable) message.delete({ timeout: 1500 }).catch(console.error()) // Si dans le command help on a mis true à delete et que le message est deletable on le delete. Si ça marche po on catch les errors
 
-  command.run(bot, message, args, embedMaker, prefix, embedError);
+  command.run(bot, message, args, embedMaker, prefix, embedError, convertTtD);
 
   //fonctions
   function embedMaker (title = "Titre", description = "Quelque chose semble causer problème :thinking:", footer = `Demandée par ${message.author.username}`, color = "5D6C9D", image = undefined, thumbnail = undefined) {
@@ -87,5 +87,11 @@ module.exports = (bot, message) => {
       .setDescription(description)
       .setFooter(`Demandée par ${message.author.username}`, `${message.author.avatarURL()}`)
       .setTimestamp();
+  };
+
+  function convertTtD(timestamp) {
+    const d = new Date( timestamp );
+    date = d.getHours() + ":" + d.getMinutes() + ", " + d.toDateString();
+    return date;
   };
 }

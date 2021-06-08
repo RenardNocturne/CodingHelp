@@ -5,7 +5,7 @@ const { readdirSync } = require('fs');
 const bot = new Discord.Client();
 ["commands", "cooldowns", "perms"].forEach(element => bot[element] = new Discord.Collection());
 
-const loadCommands = (dir = './Events') => {
+const loadEvents = (dir = './Events') => {
   readdirSync(dir).forEach(dirs => {
     const events = readdirSync(`${dir}/${dirs}`).filter(files => files.endsWith(".js"));
 
@@ -21,7 +21,7 @@ const loadCommands = (dir = './Events') => {
 
 
 
-const loadEvents = (dir = './Commands') => {
+const loadCommands = (dir = './Commands') => {
   readdirSync(dir).forEach(dirs => {
     const commands = readdirSync(`${dir}/${dirs}`).filter(files => files.endsWith(".js"));
 
