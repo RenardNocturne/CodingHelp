@@ -35,8 +35,13 @@ date = d.getHours() + ":" + d.getMinutes() + ", " + d.toDateString();
 return date;
 };
 
+function upperCaseFirstLettter (a) {
+    return (a+'').charAt(0).toUpperCase()+a.substr(1)
+}
+
 module.exports = {
     loadCommands,
     loadEvents,
     convertTtD,
+    upperCaseFirstLettter
 }

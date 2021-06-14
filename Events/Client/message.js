@@ -1,5 +1,5 @@
 const { prefix, TOKEN } = require('../../Ignore/config.js');
-const { convertTtD } = require('../../Utils/loader')
+const { convertTtD, upperCaseFirstLettter } = require('../../Utils/loader')
 const Discord = require('discord.js');
 
 module.exports = (bot, message) => {
@@ -90,5 +90,5 @@ function embedError (title = "Une erreur est survenue !", description = "Quelque
       .setTimestamp();
   };
 
-  command.run(bot, message, args, embedMaker, prefix, embedError, convertTtD);
+  command.run(bot, message, args, embedMaker, prefix, embedError, convertTtD, upperCaseFirstLettter);
 }

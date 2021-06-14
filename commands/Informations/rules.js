@@ -6,7 +6,7 @@ module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
         break;
 
         case '2': 
-            message.channel.send(embedMaker(`Article ${args[0]}`, ":x: **2.** La **pub** sur toute sa forme est **interdite** ailleurs que dans #📧》partenariats, que ce soit en MP ou en public."))
+            message.channel.send(embedMaker(`Article ${args[0]}`, ":x: **2.** La **pub** sur toute sa forme est **interdite** ailleurs que dans <#841714602302767134>, que ce soit en MP ou en public."))
         break;
 
         case '3':
@@ -42,7 +42,7 @@ module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
         break;
 
         default:
-            message.channel.send(embedMaker(`Voici les règles du serveur:`, "> :x: **1.** **Ne pas spammer** (Envoyer des messages en répétition) dans les salons textuels. \n > :x: **2.** La **pub** sur toute sa forme est **interdite** ailleurs que dans #📧》partenariats, que ce soit en MP ou en public. \n > :x: **3.** Le **respect** entre chaque membre est **obligatoire** (toutes insultes sous toutes forme sera sanctionné). \n > :x: **4.** **Ne pas mentionner les admins** ou membres du staff **sans raison valable** ou pour des problèmes qui ne nous concerne pas ou que nous ne pouvons résoudre. \n > :x: **5.** Le **multi-compte** est **strictement interdit.** \n > :x: **6.** Toutes réactions visant à écrire des **insultes** sera **sanctionné.** \n > :x: **7.** Le contenu **pornographique** est **interdit.** \n > :x: **8.** **L'usurpation d'identité** est formellement **interdite.** \n > \n > :warning: **9.** *Chaque salon a une utilité veuillez les respecter en lisant les messages épinglés.* \n > \n > :white_check_mark: **10.** **Bonne humeur et entraide sont les maîtres mots.**"));
+            message.channel.send(embedMaker(`Voici les règles du serveur:`, " :x: **1.** **Ne pas spammer** (Envoyer des messages en répétition) dans les salons textuels. \n  :x: **2.** La **pub** sur toute sa forme est **interdite** ailleurs que dans <#841714602302767134>, que ce soit en MP ou en public. \n :x: **3.** Le **respect** entre chaque membre est **obligatoire** (toutes insultes sous toutes forme sera sanctionné). \n  :x: **4.** **Ne pas mentionner les admins** ou membres du staff **sans raison valable** ou pour des problèmes qui ne nous concerne pas ou que nous ne pouvons résoudre. \n  :x: **5.** Le **multi-compte** est **strictement interdit.** \n  :x: **6.** Toutes réactions visant à écrire des **insultes** sera **sanctionné.** \n  :x: **7.** Le contenu **pornographique** est **interdit.** \n  :x: **8.** **L'usurpation d'identité** est formellement **interdite.** \n  \n  :warning: **9.** *Chaque salon a une utilité veuillez les respecter en lisant les messages épinglés.* \n  \n  :white_check_mark: **10.** **Bonne humeur et entraide sont les maîtres mots.**"));
         break;
     }
 }
@@ -50,7 +50,7 @@ module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
 module.exports.help = {
     name: "rules",
     category: 'informations',
-    description: "Vous renvoies la liste des règles du serveur !",
+    description: "Vous renvoie la liste des règles du serveur !",
     args: false,
     usage: '<numéro de la règle>',
     cooldown: 25,

@@ -6,7 +6,7 @@ module.exports.run = async (bot, message, args, embedMaker, prefix, embedError, 
     
     let links = []; // On initialise un empty array
     userInvites.forEach (invite => {    //Pour chaque invite on prend les infos qui nous interressent et on stock
-        links.push(`\n \n *__Invitation au code ${invite.code}:__* \n > **${invite.uses} utilisation(s)** \n > Créée à ${convertTtD(invite.createdTimestamp)} \n > Invitation infini: ${invite.temporary}`)
+        links.push(`\n \n *__Invitation au code ${invite.code}:__* \n > **${invite.uses} utilisation(s)** \n > Créée à ${convertTtD(invite.createdTimestamp)} \n > Invitation temporaire: ${invite.temporary}`)
     })
 
     const txt = `${links.join(' ')}` // Le texte c'est le tableau mais sans les virgules(oui c'est pas opti comme code et alors ??????????)
@@ -21,7 +21,7 @@ module.exports.run = async (bot, message, args, embedMaker, prefix, embedError, 
 module.exports.help = {
     name: "invites",
     category: 'informations',
-    description: "Vous renvoies les statistiques de vos invitations !",
+    description: "Vous renvoie les statistiques de vos invitations !",
     args: false,
     usage: '',
     cooldown: 25,

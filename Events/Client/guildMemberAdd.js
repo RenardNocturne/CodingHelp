@@ -5,6 +5,7 @@ module.exports = (bot, member) => {
     
     console.log("Nouvel utilisateur !");
     const welEmbed = new MessageEmbed()
+        .setThumbnail(member.user.displayAvatarURL())
         .setTitle(`Ho ! ${member.displayName} nous a rejoint !`)
         .setColor("5D6C9D")
         .setDescription(`Nous sommes désormais ${member.guild.memberCount} sur ${member.guild.name} et ce grâce à toi ! :tada:`)

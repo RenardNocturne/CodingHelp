@@ -6,7 +6,7 @@ module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
 module.exports.help = {
     name: "help",
     category: 'informations',
-    description: "Vous renvoies la liste des commandes disponibles !",
+    description: "Vous renvoie la liste des commandes disponibles !",
     args: false,
     usage: '',
     cooldown: 25,
