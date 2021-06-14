@@ -1,5 +1,3 @@
-const { prefix, TOKEN } = require('../../Ignore/config.js');
-const { convertTtD, upperCaseFirstLettter } = require('../../Utils/loader')
 const Discord = require('discord.js');
 
 module.exports = async (bot, messageReaction, user) => {
