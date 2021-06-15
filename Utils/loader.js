@@ -43,5 +43,5 @@ module.exports = {
     loadCommands,
     loadEvents,
     convertTtD,
-    upperCaseFirstLettter
+    upperCaseFirstLettter,
 }

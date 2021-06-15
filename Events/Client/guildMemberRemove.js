@@ -1,8 +1,14 @@
 const { MessageEmbed, MessageAttachment } = require("discord.js");
 const img = new MessageAttachment('./img/leave.jpg');
 
-module.exports = (bot, member, convertTtD) => {
+module.exports = (bot, member,) => {
     
+    
+    function convertTtD (timestamp) {
+        const d = new Date( timestamp );
+        date = d.getHours() + ":" + d.getMinutes() + ", " + d.toDateString();
+        return date;
+    };
     console.log("Un utilisateur nous a quitté !");
     const leaveEmbed = new MessageEmbed()
         .setThumbnail(member.user.displayAvatarURL())
