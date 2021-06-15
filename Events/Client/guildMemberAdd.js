@@ -14,7 +14,7 @@ module.exports = (bot, member) => {
         .setFooter('Espérons que tu te plaises parmis nous !', member.user.displayAvatarURL());
 
     const ruleEmbed = new MessageEmbed()
-        .setTitle(`${member.displayName} bienvenue !`)
+        .setTitle(`Bienvenue ${member.displayName} !`)
         .setDescription(`Ici tu pourras prendre connaissance des règles ! **Acceptes-les afin de jouir de l'intégralité du serveur via la réaction :white_check_mark:**`)
         .setColor("5D6C9D")
         .setFooter(`Règles du serveur ${member.guild.name}`, member.guild.iconURL());

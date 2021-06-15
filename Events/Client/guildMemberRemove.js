@@ -6,8 +6,8 @@ module.exports = (bot, member,) => {
     
     function convertTtD (timestamp) {
         let date = new Date(timestamp);
-    
-        return date.getDate() + "/" + (date.getMonth() + 1) + "/" +date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+        let minutes = "0" + date.getMinutes();
+        return date.getHours() + ":" + minutes.substr(-2) + " le " + date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
     }
     console.log("Un utilisateur nous a quitté !");
     const leaveEmbed = new MessageEmbed()
