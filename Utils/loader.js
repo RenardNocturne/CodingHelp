@@ -30,11 +30,10 @@ const loadCommands = (bot, dir = './Commands') => {
 };
 
 function convertTtD(timestamp) {
-const d = new Date( timestamp );
-date = d.getHours() + ":" + d.getMinutes() + ", " + d.toDateString();
-return date;
-};
-
+    let date = new Date(timestamp);
+    
+    return date.getDate() + "/" + (date.getMonth() + 1) + "/" +date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes()+ ":" +date.getSeconds();
+}
 function upperCaseFirstLettter (a) {
     return (a+'').charAt(0).toUpperCase()+a.substr(1)
 }
