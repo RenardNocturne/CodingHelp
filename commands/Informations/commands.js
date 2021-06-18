@@ -37,7 +37,7 @@ module.exports.run = async (bot, message, args, embedMaker, prefix, embedError, 
             console.log(command.help.aliases.length)
         }
 
-        txt += `***__Description:__*** \n > ${command.help.description} \n \n ***__Catégorie:__*** \n > ${upperCaseFirstLettter(command.help.category)} \n \n ***__Utilisation:__*** \n > ${prefix}${command.help.name} ${command.help.usage} \n \n ***__Cooldown:__*** \n > ${command.help.cooldown} secondes \n \n`
+        txt += `***__Description:__*** \n > ${command.help.description} \n \n ***__Catégorie:__*** \n > ${upperCaseFirstLettter(command.help.category)} \n \n ***__Utilisation:__*** \n > \`${prefix}${command.help.name} ${command.help.usage}\` \n \n ***__Cooldown:__*** \n > ${command.help.cooldown} secondes \n \n`
 
         if (command.help.userPerms.length !== 0) {
             txt += `***__Permissions utilisateur requises:__*** \n > ${command.help.userPerms.join(' \n > ')} \n \n`
@@ -54,7 +54,6 @@ module.exports.run = async (bot, message, args, embedMaker, prefix, embedError, 
             .setTimestamp()
             .setFooter(`Demandée par ${message.author.username}`, message.author.displayAvatarURL());
         message.channel.send(embed)
-        console.log(command);
     }
 }
 

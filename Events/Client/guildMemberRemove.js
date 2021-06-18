@@ -9,6 +9,16 @@ module.exports = (bot, member,) => {
         let minutes = "0" + date.getMinutes();
         return date.getHours() + ":" + minutes.substr(-2) + " le " + date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
     }
+
+    const personalizedLeaveEmbed = new MessageEmbed()
+        .setThumbnail(member.user.displayAvatarURL())
+        .setTitle(`Ho ! ${member.displayName} nous a quitté !`)
+        .setColor("5D6C9D")
+        .setDescription(`${bdd['leaveMessage']}`)
+        .attachFiles(img)
+        .setImage('attachment://wlc.png')
+        .setFooter(`Avait rejoint à ${convertTtD(member.joinedTimestamp)}`, member.user.displayAvatarURL());
+
     console.log("Un utilisateur nous a quitté !");
     const leaveEmbed = new MessageEmbed()
         .setThumbnail(member.user.displayAvatarURL())
@@ -19,5 +29,9 @@ module.exports = (bot, member,) => {
         .setImage('attachment://leave.jpg')
         .setFooter(`Avait rejoint à ${convertTtD(member.joinedTimestamp)}`, member.user.displayAvatarURL());
 
-    member.guild.channels.cache.get('825777621224128524').send(leaveEmbed);
+    if (bdd["welcomeMessage"]) {
+        member.guild.channels.cache.get('825777621224128524').send(personalizedLeaveEmbed);
+    } else {
+        member.guild.channels.cache.get('825777621224128524').send(leaveEmbed);
+    }
 }
