@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args, embedMaker, prefix, embedError, 
     await message.guild.channels.create(`ticket-de-${message.author.username}`, {
         type: 'text',
         topic: messageContent,
-        position: 0,
+        position: 2,
         reason: messageContent,
         parent: '855119683081338891',
         permissionOverwrites: [

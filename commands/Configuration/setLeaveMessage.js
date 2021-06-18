@@ -41,7 +41,7 @@ args: false,
 usage: "<Nouveau message d'adieu>",
 cooldown: 10,
 aliases: ['setleavemessage'],
-userPerms: [],
+userPerms: ['MANAGE_MESSAGES'],
 botPerms: [],
 deletecmd: true,
 }

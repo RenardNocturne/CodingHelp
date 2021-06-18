@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = async (bot, channel) => {
 
     if (channel.type === 'dm') return;
-    let txt;
+    let txt = '';
     if (channel.type === 'GUILD_CATEGORY') {
         txt += 'vient de créer une catégorie !'
     } else {

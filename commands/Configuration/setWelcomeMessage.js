@@ -41,7 +41,7 @@ args: false,
 usage: "<Nouveau message de bienvenue>",
 cooldown: 10,
 aliases: ['setwelcomemessage', 'setwelmsg', 'setWelMsg'],
-userPerms: [],
+userPerms: ['MANAGE_MESSAGES'],
 botPerms: [],
 deletecmd: true,
 }

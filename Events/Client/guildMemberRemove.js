@@ -1,5 +1,6 @@
 const { MessageEmbed, MessageAttachment } = require("discord.js");
 const img = new MessageAttachment('./img/leave.jpg');
+const bdd = require('../../Utils/bdd.json')
 
 module.exports = (bot, member,) => {
     
