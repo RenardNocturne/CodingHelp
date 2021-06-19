@@ -68,7 +68,7 @@ module.exports = (bot, message) => {
   setTimeout(() => Timestamp.delete(message.author.id), delay);
 
   //delete
-  if(command.help.deletecmd === true && message.deletable) message.delete({ timeout: 1500 }).catch(console.error()) // Si dans le command help on a mis true à delete et que le message est deletable on le delete. Si ça marche po on catch les errors
+  if(command.help.deletecmd === true && message.deletable) message.delete().catch(console.error()) // Si dans le command help on a mis true à delete et que le message est deletable on le delete. Si ça marche po on catch les errors
 
   function embedMaker (title = "Titre", description = "Quelque chose semble causer problème :thinking:", footer = `Demandée par ${message.author.username}`, color = "5D6C9D", image = undefined, thumbnail = undefined) {
     return new Discord.MessageEmbed()

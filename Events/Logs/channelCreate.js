@@ -14,7 +14,6 @@ module.exports = async (bot, channel) => {
     const latestChannelCreated = AuditLogs.entries.first(); // On prend la première entrée
     const { executor, target } = latestChannelCreated; // On va chercher executor et target dans latestChannelCreated
     if (latestChannelCreated.target.guild.id !== '825760704241991752') return;
-    console.log(latestChannelCreated);
 
     const embed = new MessageEmbed() // On fait l'embed
         .setTitle(`${executor.username} ${txt}`)
