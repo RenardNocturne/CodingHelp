@@ -1,6 +1,4 @@
-const { readdirSync, writeFile } = require('fs');
-const bdd = require('../Utils/bdd.json')
-const Discord = require('discord.js');
+const { readdirSync } = require('fs');
 
 const loadEvents = (bot, dir = './Events') => {
     readdirSync(dir).forEach(dirs => {
@@ -39,16 +37,9 @@ function upperCaseFirstLettter (a) {
     return (a+'').charAt(0).toUpperCase()+a.substr(1)
 }
 
-function saveBdd () {
-    writeFile('./Utils/bdd.json', JSON.stringify(bdd, null, 4), (err) => {
-        if (err) console.log(err);
-    })
-}
-
 module.exports = {
     loadCommands,
     loadEvents,
     convertTtD,
     upperCaseFirstLettter,
-    saveBdd,
 }

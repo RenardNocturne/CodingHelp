@@ -1,18 +1,9 @@
 const { MessageEmbed, MessageAttachment } = require("discord.js");
 const img = new MessageAttachment('./img/wlc.png');
-const bdd = require('../../Utils/bdd.json')
 
 module.exports = (bot, member) => {
     
     console.log("Nouvel utilisateur !");
-    const personalizedWelEmbed = new MessageEmbed()
-        .setThumbnail(member.user.displayAvatarURL())
-        .setTitle(`Ho ! ${member.displayName} nous a rejoint !`)
-        .setColor("5D6C9D")
-        .setDescription(`${bdd['welcomeMessage']}`)
-        .attachFiles(img)
-        .setImage('attachment://wlc.png')
-        .setFooter('Espérons que tu te plaises parmis nous !', member.user.displayAvatarURL());
 
     const welEmbed = new MessageEmbed()
         .setThumbnail(member.user.displayAvatarURL())
@@ -29,11 +20,7 @@ module.exports = (bot, member) => {
         .setColor("5D6C9D")
         .setFooter(`Règles du serveur ${member.guild.name}`, member.guild.iconURL());
 
-        if (bdd["welcomeMessage"]) {
-            member.guild.channels.cache.get('825776631599333396').send(personalizedWelEmbed);
-        } else {
-            member.guild.channels.cache.get('825776631599333396').send(welEmbed);
-        }
+         member.guild.channels.cache.get('825776631599333396').send(welEmbed);
     
     member.guild.channels.cache.get('825765662923423754').send(`<@!${member.id}>`, ruleEmbed).then(msg => msg.delete({timeout: 30000}));
 }

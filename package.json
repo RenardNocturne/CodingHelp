@@ -1,18 +1,25 @@
 {
-  "name": "botdiscord--codingttime-",
+  "name": "codinghelp",
   "version": "1.0.0",
-  "description": "",
+  "description": "Un gentil bot pour CodingTime",
   "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RenardNocturne/CodingHelp.git"
+  },
+  "author": "RenardNocturne",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RenardNocturne/CodingHelp/issues"
+  },
+  "homepage": "https://github.com/RenardNocturne/CodingHelp#readme",
   "dependencies": {
     "@discordjs/opus": "github:discordjs/opus",
     "discord.js": "^12.5.3",
+    "mongoose": "^5.12.14",
     "ytdl-core-discord": "^1.3.1"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC"
+  }
 }
