@@ -13,7 +13,7 @@ module.exports = bot => {
     bot.getGuild = async guild => {
         const data = await Guild.findOne({ guildID: guild.id });
         if (data) return data;
-        return bot.config.defaultSettings;
+        return bot.config.DEFAULTSETTINGS;
     };
 
     bot.updateGuild = async (guild, settings) => {

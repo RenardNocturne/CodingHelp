@@ -4,15 +4,15 @@ module.exports.run = async (bot, message, args, embedMaker, prefix, embedError, 
 
     if (newSetting) {
         await bot.updateGuild(message.guild, { prefix: newSetting });
-        return message.channel.send(embedMaker('Préfixe modifié:', `L'ancien préfixe \`${settings.prefix}\` a été changé en ${newSetting}`))
+        return message.channel.send(embedMaker('Préfixe modifié:', `L'ancien préfixe \`${settings.prefix}\` a été changé en \`${newSetting}\``))
     } else {
-        message.channel.send(embedMaker('Préfixe actuel:', `Le préfixe actuel est ${settings.prefix}`))
+        message.channel.send(embedMaker('Préfixe actuel:', `Le préfixe actuel est \`${settings.prefix}\``))
     }
     console.log(newSetting);
 }
 
 module.exports.help = {
-name: 'setPrefix',
+name: 'prefix',
 category: 'configuration',
 description: 'Vous Permet de modifier le préfix du bot.',
 args: false,

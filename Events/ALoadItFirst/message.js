@@ -1,4 +1,3 @@
-const { prefix, TOKEN } = require('../../Ignore/config.js');
 const { convertTtD, upperCaseFirstLettter } = require('../../Utils/loader')
 const Discord = require('discord.js');
 
@@ -6,14 +5,16 @@ module.exports = async (bot, message) => {
   
   if(message.channel.type === 'dm') return bot.emit('directMessage', message)
 
+  const settings = await bot.getGuild(message.guild);
+
   //constantes
+  const prefix = settings.prefix;
   const args = message.content.slice(prefix.length).split(/ +/);
 
   const commandName = args.shift().toLowerCase();
   
   const command = bot.commands.get(commandName) || bot.commands.find(cmd => cmd.help.aliases && cmd.help.aliases.includes(commandName));
 
-  const settings = await bot.getGuild(message.guild);
   //sécurité
   if (message.type !== 'DEFAULT' || message.author.bot || !command) return;
   

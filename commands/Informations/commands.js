@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args, embedMaker, prefix, embedError, 
         const embed = new MessageEmbed()
             .setTitle(`Voici la liste des commandes !`)
             .setColor("5D6C9D")
-            .setDescription(`**Pour plus d'informations sur une commandes, tapez** \`>_help <Nom d'une commande>\` !`)
+            .setDescription(`**Pour plus d'informations sur une commandes, tapez** \`${prefix}help <Nom d'une commande>\` !`)
             .setFooter(`Demandée par ${message.author.username}`, message.author.displayAvatarURL())
             .setTimestamp()
 
