@@ -12,6 +12,7 @@ module.exports = (bot, member) => {
         .setDescription(`Nous sommes désormais ${member.guild.memberCount} sur ${member.guild.name} et ce grâce à toi ! :tada:`)
         .attachFiles(img)
         .setImage('attachment://wlc.png')
+        .setTimestamp()
         .setFooter('Espérons que tu te plaises parmis nous !', member.user.displayAvatarURL());
 
     const ruleEmbed = new MessageEmbed()
@@ -20,7 +21,7 @@ module.exports = (bot, member) => {
         .setColor("5D6C9D")
         .setFooter(`Règles du serveur ${member.guild.name}`, member.guild.iconURL());
 
-         member.guild.channels.cache.get('825776631599333396').send(welEmbed);
+        member.guild.channels.cache.get('825776631599333396').send(welEmbed).catch(err => console.log(err));
     
-    member.guild.channels.cache.get('825765662923423754').send(`<@!${member.id}>`, ruleEmbed).then(msg => msg.delete({timeout: 30000}));
+    member.guild.channels.cache.get('825765662923423754').send(`<@!${member.id}>`, ruleEmbed).then(msg => msg.delete({timeout: 30000})).catch(err => console.log(err));
 }

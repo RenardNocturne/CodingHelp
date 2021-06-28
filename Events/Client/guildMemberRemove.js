@@ -21,5 +21,5 @@ module.exports = (bot, member,) => {
         .setImage('attachment://leave.jpg')
         .setFooter(`Avait rejoint à ${convertTtD(member.joinedTimestamp)}`, member.user.displayAvatarURL());
 
-     member.guild.channels.cache.get('825777621224128524').send(leaveEmbed);
+     member.guild.channels.cache.get('825777621224128524').send(leaveEmbed).catch(err => console.log(err));
 }
