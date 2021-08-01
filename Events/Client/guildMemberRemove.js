@@ -2,7 +2,7 @@ const { MessageEmbed, MessageAttachment } = require("discord.js");
 const img = new MessageAttachment('./img/leave.jpg');
 
 module.exports = (bot, member,) => {
-    
+    if (member.guild.id !== '825760704241991752') return
     
     function convertTtD (timestamp) {
         let date = new Date(timestamp);
@@ -21,5 +21,5 @@ module.exports = (bot, member,) => {
         .setImage('attachment://leave.jpg')
         .setFooter(`Avait rejoint à ${convertTtD(member.joinedTimestamp)}`, member.user.displayAvatarURL());
 
-     member.guild.channels.cache.get('825777621224128524').send(leaveEmbed).catch();
+     member.guild.channels.cache.get('825777621224128524').send(leaveEmbed);
 }

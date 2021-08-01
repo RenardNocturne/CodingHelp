@@ -3,6 +3,7 @@ const img = new MessageAttachment('./img/wlc.png');
 
 module.exports = (bot, member) => {
     
+    if (member.guild.id !== '825760704241991752') return
     console.log("Nouvel utilisateur !");
 
     const welEmbed = new MessageEmbed()
@@ -21,7 +22,7 @@ module.exports = (bot, member) => {
         .setColor("5D6C9D")
         .setFooter(`Règles du serveur ${member.guild.name}`, member.guild.iconURL());
 
-        member.guild.channels.cache.get('825776631599333396').send(welEmbed).catch();
+        member.guild.channels.cache.get('825776631599333396').send(welEmbed);
     
-    member.guild.channels.cache.get('825765662923423754').send(`<@!${member.id}>`, ruleEmbed).then(msg => msg.delete({timeout: 30000})).catch();
+    member.guild.channels.cache.get('825765662923423754').send(`<@!${member.id}>`, ruleEmbed).then(msg => msg.delete({timeout: 30000}));
 }
