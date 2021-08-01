@@ -11,7 +11,7 @@ module.exports = async (bot, button) => {
     if (button.id === 'refused') {
         if (button.clicker.member.roles.cache.has('825861210619641916')) {
             button.clicker.member.roles.remove('825861210619641916');
-            button.reply.send(`${button.clicker.user.username}, Je t'ai retiré le rôle <@&825861210619641916>, clique encore une fois afin de quitter le serveur !`, true);
+            button.reply.send(`${button.clicker.user.username}, je t'ai retiré le rôle <@&825861210619641916>, clique encore une fois afin de quitter le serveur !`, true);
         } else {
             await button.clicker.member.kick()
             .then(() => {
