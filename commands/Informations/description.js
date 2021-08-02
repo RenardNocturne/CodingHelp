@@ -1,5 +1,4 @@
-const { MessageEmbed, MessageAttachment } = require('discord.js');
-const Logo = new MessageAttachment('../../img/PP.jpg');
+const { MessageEmbed } = require('discord.js');
 
 module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
 
@@ -15,6 +14,7 @@ module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
 
 module.exports.help = {
     name: "description",
+    category: 'informations',
     description: "Faites connaissance avec CodingHelp !",
     args: false,
     usage: '',
@@ -22,4 +22,5 @@ module.exports.help = {
     aliases: ['desc'],
     userPerms: [],
     botPerms: [],
+    deletecmd: true,
 }

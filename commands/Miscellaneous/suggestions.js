@@ -18,6 +18,7 @@ module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
 
 module.exports.help = {
     name: "suggestions",
+    category: 'miscellaneous',
     description: "Envoyez vous meilleures suggestions !",
     args: true,
     usage: "[Votre suggestion]",
@@ -25,4 +26,5 @@ module.exports.help = {
     aliases: ['suggests', 'suggest', 'suggestion'],
     userPerms: [],
     botPerms: [],
+    deletecmd: true,
 }

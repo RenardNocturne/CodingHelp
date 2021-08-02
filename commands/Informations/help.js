@@ -5,11 +5,13 @@ module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
 
 module.exports.help = {
     name: "help",
-    description: "Vous renvoies la liste des commandes disponibles !",
+    category: 'informations',
+    description: "Vous renvoie la liste des commandes disponibles !",
     args: false,
     usage: '',
     cooldown: 25,
     aliases: ["halp"],
-    userPerms: ["ADMINISTRATOR"],
-    botPerms: ["SEND_MESSAGES", "ADMINISTRATOR"]
+    userPerms: [],
+    botPerms: [],
+    deletecmd: true,
 }

@@ -5,6 +5,7 @@ module.exports.run = (bot, message, args, embedMaker, prefix, embedError) => {
 
 module.exports.help = {
     name: "bonjour",
+    category: 'test commands',
     description: "N'oublions pas les bonnes manières !",
     args: false,
     usage: '',
@@ -12,4 +13,5 @@ module.exports.help = {
     aliases: [],
     userPerms: [],
     botPerms: [],
+    deletecmd: false,
 }
