@@ -1,3 +1,6 @@
+const { MessageEmbed, MessageAttachment } = require("discord.js");
+const { MessageActionRow, MessageButton } = require('discord-buttons')
+
 let remove = false;
 
 module.exports = (bot, menu) => {
@@ -252,5 +255,121 @@ module.exports = (bot, menu) => {
                 
             }
         });
+    }
+
+    if (menu.id === 'ticket') {menu
+        menu.values.forEach(value => {
+
+            async function createTicket (ticketReason, ticketName = 'ticket') {
+
+                if (ticketReason === 'Partenariat' || ticketReason === 'Candidature') {
+                    await menu.guild.channels.create(`${ticketName}-de-${menu.clicker.user.username}`, {
+                        type: 'text',
+                        topic: `**${menu.clicker.user.username}** a ouvert ce ticket pour la raison **"${ticketReason}"** !`,
+                        position: 0,
+                        reason: ticketReason,
+                        parent: '855119683081338891',
+                        permissionOverwrites: [
+                            {
+                                id: menu.guild.id,
+                                deny: ['VIEW_CHANNEL'],
+                            },
+                            {
+                                id: menu.clicker.user.id,
+                                allow: ['VIEW_CHANNEL'],
+                            },
+                            {
+                                id: '825764558093156372',
+                                allow: ['VIEW_CHANNEL']
+                            },
+                        ],
+                    }).then(newChannel => {
+                        const embed = new MessageEmbed()
+                            .setTitle('Nouveau ticket en vue !')
+                            .setDescription(`Ticket ouvert par <@!${menu.clicker.user.id}>: \n \n **__Raison:__** \n > ${ticketReason} \n \n *Utilisez le bouton ci-dessous une fois que le problème est réglé !*`)
+                            .setColor('5D6C9D')
+                            .setTimestamp()
+                            .setThumbnail('https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/169842009/original/46a0b436c0aee26427e93e58dcc839a5d5002f9f/give-a-python-ticket-system-for-discord-bot.png')
+                            .setFooter(`Ticket ouvert par ${menu.clicker.user.username}`, menu.clicker.user.avatarURL());
+                        
+                            const button = new MessageButton()
+                            .setLabel('Fermer le ticket !')
+                            .setStyle('red')
+                            .setID('closeTicket');
+                        
+                        const row = new MessageActionRow()
+                            .addComponent(button);
+
+                        bot.channels.cache.find(channel => channel.id === newChannel.id).send(embed, {components: [row]}).then(msg => msg.pin())
+                        menu.reply.send(`${menu.clicker.user.username}, votre ticket <#${newChannel.id}> a été créé pour la raison "${ticketReason.toLowerCase()}" !`, true);
+                    })
+                } else {
+                    await menu.guild.channels.create(`${ticketName}-de-${menu.clicker.user.username}`, {
+                        type: 'text',
+                        topic: `**${menu.clicker.user.username}** a ouvert ce ticket pour la raison **"${ticketReason}"** !`,
+                        position: 0,
+                        reason: ticketReason,
+                        parent: '855119683081338891',
+                        permissionOverwrites: [
+                            {
+                                id: menu.guild.id,
+                                deny: ['VIEW_CHANNEL'],
+                            },
+                            {
+                                id: menu.clicker.user.id,
+                                allow: ['VIEW_CHANNEL'],
+                            },
+                            {
+                                id: '825764558093156372',
+                                allow: ['VIEW_CHANNEL']
+                            },
+                            {
+                                id: '830056374876110848',
+                                allow: ['VIEW_CHANNEL']
+                            },
+                            {
+                                id: '825763643688878101',
+                                allow: ['VIEW_CHANNEL']
+                            },
+                        ],
+                    }).then(newChannel => {
+                        const embed = new MessageEmbed()
+                            .setTitle('Nouveau ticket en vue !')
+                            .setDescription(`Ticket ouvert par <@!${menu.clicker.user.id}>: \n \n **__Raison:__** \n > ${ticketReason} \n \n *Utilisez le bouton ci-dessous une fois que le problème est réglé !*`)
+                            .setColor('5D6C9D')
+                            .setThumbnail('https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/169842009/original/46a0b436c0aee26427e93e58dcc839a5d5002f9f/give-a-python-ticket-system-for-discord-bot.png')
+                            .setFooter(`Ticket ouvert par ${menu.clicker.user.username}`, menu.clicker.user.avatarURL())
+                            .setTimestamp();
+    
+                        const button = new MessageButton()
+                            .setLabel('Fermer le ticket !')
+                            .setStyle('red')
+                            .setID('closeTicket');
+                        
+                        const row = new MessageActionRow()
+                            .addComponent(button);
+                        
+                        bot.channels.cache.find(channel => channel.id === newChannel.id).send(embed, {components: [row]}).then(msg => msg.pin());
+                        menu.reply.send(`${menu.clicker.user.username}, votre ticket <#${newChannel.id}> a bien été créé !`, true);
+                    })
+                }
+            }
+
+            if (value === 'help') {
+                createTicket('Beson d\'aide !');
+            }
+            if (value === 'candidature') {
+                createTicket('Candidature', 'candidature');
+            }
+            if (value === 'partenariat') {
+                createTicket('Partenariat', 'partenariat');
+            }
+            if (value === 'other') {
+                createTicket('Autre, **à préciser** !');
+            }
+            if (value === 'blank') {
+                menu.reply.send('Vous pouvez désormais choisir une raison pour laquelle ouvrir un ticket !', true)
+            }
+        })
     }
 }
