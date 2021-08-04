@@ -37,7 +37,7 @@ module.exports = async (bot, button) => {
                 .setColor('DE2916')
                 .setFooter('Demandée par ' + button.clicker.user.username, button.clicker.user.displayAvatarURL());
             
-            ticket.send(embed)
+            button.reply.send(embed)
             setTimeout(suppr, 15000)
         } else {
             button.reply.send('Seul un <@&825764023504470047> ou un <@&825764558093156372> peut fermer le ticket, **merci d\'en mentionner un une fois le problème reglé !**', true)

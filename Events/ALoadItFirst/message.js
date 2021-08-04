@@ -5,10 +5,8 @@ module.exports = async (bot, message) => {
   
   if(message.channel.type === 'dm') return bot.emit('directMessage', message)
 
-  const settings = await bot.getGuild(message.guild);
-
   //constantes
-  const prefix = settings.prefix;
+  const prefix = bot.config.PREFIX;
   const args = message.content.slice(prefix.length).split(/ +/);
 
   const commandName = args.shift().toLowerCase();
@@ -93,5 +91,5 @@ function embedError (title = "<a:CrossCodingHelp:857960524682756116> | Une erreu
       .setTimestamp();
   };
 
-  command.run(bot, message, args, embedMaker, prefix, embedError, convertTtD, upperCaseFirstLettter, settings);
+  command.run(bot, message, args, embedMaker, prefix, embedError, convertTtD, upperCaseFirstLettter);
 }

@@ -257,7 +257,7 @@ module.exports = (bot, menu) => {
         });
     }
 
-    if (menu.id === 'ticket') {menu
+    if (menu.id === 'ticket') {
         menu.values.forEach(value => {
 
             async function createTicket (ticketReason, ticketName = 'ticket') {
@@ -273,6 +273,10 @@ module.exports = (bot, menu) => {
                             {
                                 id: menu.guild.id,
                                 deny: ['VIEW_CHANNEL'],
+                            },
+                            {
+                                id: '825764023504470047',
+                                allow: ['VIEW_CHANNEL']
                             },
                             {
                                 id: menu.clicker.user.id,
@@ -292,6 +296,14 @@ module.exports = (bot, menu) => {
                             .setThumbnail('https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/169842009/original/46a0b436c0aee26427e93e58dcc839a5d5002f9f/give-a-python-ticket-system-for-discord-bot.png')
                             .setFooter(`Ticket ouvert par ${menu.clicker.user.username}`, menu.clicker.user.avatarURL());
                         
+                        const candidEmbed = new MessageEmbed()
+                            .setTitle('Nouveau ticket en vue !')
+                            .setDescription(`Ticket ouvert par <@!${menu.clicker.user.id}>: \n \n **__Raison:__** \n > ${ticketReason} \n \n **[Cliquez ici pour accéder au formulaire de recrutement !](https://docs.google.com/forms/d/14F4OKijBgqpDP5lOOKCrXcNJJbwZais6-Zxvq1V9Tk4)** \n \n *Utilisez le bouton ci-dessous une fois que le problème est réglé !*`)
+                            .setColor('5D6C9D')
+                            .setThumbnail('https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/169842009/original/46a0b436c0aee26427e93e58dcc839a5d5002f9f/give-a-python-ticket-system-for-discord-bot.png')
+                            .setFooter(`Ticket ouvert par ${menu.clicker.user.username}`, menu.clicker.user.avatarURL())
+                            .setTimestamp();
+
                             const button = new MessageButton()
                             .setLabel('Fermer le ticket !')
                             .setStyle('red')
@@ -300,7 +312,8 @@ module.exports = (bot, menu) => {
                         const row = new MessageActionRow()
                             .addComponent(button);
 
-                        bot.channels.cache.find(channel => channel.id === newChannel.id).send(embed, {components: [row]}).then(msg => msg.pin())
+                        if (ticketReason !== 'Candidature') bot.channels.cache.find(channel => channel.id === newChannel.id).send(embed, {components: [row]}).then(msg => msg.pin())
+                        if (ticketReason === 'Candidature') bot.channels.cache.find(channel => channel.id === newChannel.id).send(candidEmbed, {components: [row]}).then(msg => msg.pin());
                         menu.reply.send(`${menu.clicker.user.username}, votre ticket <#${newChannel.id}> a été créé pour la raison "${ticketReason.toLowerCase()}" !`, true);
                     })
                 } else {
@@ -331,6 +344,10 @@ module.exports = (bot, menu) => {
                                 id: '825763643688878101',
                                 allow: ['VIEW_CHANNEL']
                             },
+                            {
+                                id: '825764023504470047',
+                                allow: ['VIEW_CHANNEL']
+                            }
                         ],
                     }).then(newChannel => {
                         const embed = new MessageEmbed()
@@ -348,8 +365,8 @@ module.exports = (bot, menu) => {
                         
                         const row = new MessageActionRow()
                             .addComponent(button);
-                        
-                        bot.channels.cache.find(channel => channel.id === newChannel.id).send(embed, {components: [row]}).then(msg => msg.pin());
+
+                        if (ticketReason !== 'candidature') bot.channels.cache.find(channel => channel.id === newChannel.id).send(embed, {components: [row]}).then(msg => msg.pin());
                         menu.reply.send(`${menu.clicker.user.username}, votre ticket <#${newChannel.id}> a bien été créé !`, true);
                     })
                 }
